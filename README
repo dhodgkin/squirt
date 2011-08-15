@@ -1,11 +1,12 @@
 DESCRIPTION:
 ============
 Squirt is a PHP MVC Framework built for personal and commercial products.
+Squirt is heavily modeled after CodeIgniter (http://www.codeigniter.com).
 
 AUTHOR:
 =======
-Josh Manders - http://www.joshmanders.com
-Prone Media  - http://www.pronemedia.com
+Josh Manders (http://www.joshmanders.com)
+Prone Media (http://www.pronemedia.com)
 
 TODO:
 =====
@@ -13,3 +14,4 @@ TODO:
 - Complete Session class.
 - Write cache class.
 - Finish error handling functions.
+- Write own welcome.php view and not use CodeIgniter's.
