@@ -1,7 +1,15 @@
-Squirt is a PHP MVC Framework built by Josh Manders for personal and commercial products from him and his company, Prone Media.
+DESCRIPTION:
+============
+Squirt is a PHP MVC Framework built for personal and commercial products.
+
+AUTHOR:
+=======
+Josh Manders - http://www.joshmanders.com
+Prone Media  - http://www.pronemedia.com
 
 TODO:
-====
+=====
 - Complete MySQL class.
 - Complete Session class.
 - Write cache class.
+- Finish error handling functions.
