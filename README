@@ -15,3 +15,5 @@ TODO:
 - Write cache class.
 - Finish error handling functions.
 - Write own welcome.php view and not use CodeIgniter's.
+
+Testing...
