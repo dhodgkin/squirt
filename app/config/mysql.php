@@ -15,11 +15,11 @@
 // ------------------------------------------------------------------------
 
 $config['mysql'] = array(
-    'use' => TRUE,
+    'use' => FALSE,
     'host' => 'localhost',
-    'user' => 'root',
-    'pass' => '',
-    'database' => 'click'
+    'user' => 'user',
+    'pass' => 'password',
+    'database' => 'database'
 );
 
 /* End of file mysql.php */

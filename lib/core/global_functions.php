@@ -20,6 +20,10 @@ function __autoload($class)
     {
         require_once BASEPATH.'/core/'.strtolower($class).'.php';
     }
+    elseif (file_exists(BASEPATH.'/libraries/'.strtolower($class).'.php'))
+    {
+        require_once BASEPATH.'/libraries/'.strtolower($class).'.php';
+    }
     elseif (file_exists(APPPATH.'/controllers/'.strtolower($class).'.php'))
     {
         require_once APPPATH.'/controllers/'.strtolower($class).'.php';

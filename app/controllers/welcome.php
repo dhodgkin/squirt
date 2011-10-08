@@ -23,7 +23,8 @@ class welcome extends controller
 
     public function index()
     {
-        $this->load->view('welcome');
+        // $this->load->view('welcome');
+        $this->load->library('test_lib');
     }
 }
 
