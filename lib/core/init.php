@@ -16,11 +16,11 @@
 
 define('SQUIRT_VERSION', '1.1.0');
 
-require_once BASEPATH.'core/global_functions.php';
+include BASEPATH.'core/global_functions.php';
 
-require_once APPPATH.'config/global.php';
+include APPPATH.'config/global.php';
 
-require_once APPPATH.'config/routes.php';
+include APPPATH.'config/routes.php';
 
 set_error_handler('squirt_error_handler');
 
@@ -53,7 +53,7 @@ if (!empty($path[1]))
     $controller = $path[1];
     if (file_exists(APPPATH.'controllers/'.$controller.'.php'))
     {
-        require_once APPPATH.'controllers/'.$controller.'.php';
+        include APPPATH.'controllers/'.$controller.'.php';
         $controller = new $controller();
     }
     else

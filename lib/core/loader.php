@@ -37,7 +37,7 @@ class loader
     {
         if (file_exists(APPPATH.'libraries/'.$library.'.php'))
         {
-            require_once APPPATH.'libraries/'.$library.'.php';
+            include APPPATH.'libraries/'.$library.'.php';
             $this->instance->$library = new $library();
             return $this;
         }
@@ -51,7 +51,7 @@ class loader
     {
         if (file_exists(APPPATH.'models/'.$model.'.php'))
         {
-            require_once APPPATH.'models/'.$model.'.php';
+            include APPPATH.'models/'.$model.'.php';
             $this->instance->$model = new $model();
         }
         else
@@ -64,7 +64,7 @@ class loader
     {
         if (file_exists(APPPATH.'helpers/'.$helper.'.php'))
         {
-            require_once APPPATH.'helpers/'.$helper.'.php';
+            include APPPATH.'helpers/'.$helper.'.php';
         }
         else
         {

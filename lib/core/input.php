@@ -56,7 +56,10 @@ class input
         return $this->post[$key];
     }
     
-    public function sanitize(){}
+    public function sanitize()
+    {
+    
+    }
 }
 
 /* End of file input.php */

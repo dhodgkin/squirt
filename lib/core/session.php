@@ -19,7 +19,7 @@ class session
 
     public function __construct()
     {
-        require APPPATH.'config/session.php';
+        include APPPATH.'config/session.php';
         $this->config = $config['session'];
         session_start();
     }

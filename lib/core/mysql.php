@@ -21,7 +21,7 @@ class mysql
 
     public function __construct()
     {
-        require APPPATH.'config/mysql.php';
+        include APPPATH.'config/mysql.php';
         $this->config = $config['mysql'];
     }
     

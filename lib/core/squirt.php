@@ -23,7 +23,7 @@ class squirt
         $this->config = new config();
         $this->session = new session();
         $this->load = new loader($this);
-        require_once APPPATH.'config/autoload.php';
+        include APPPATH.'config/autoload.php';
         foreach ($autoload as $type => $load)
         {
             if ($type === 'libraries')

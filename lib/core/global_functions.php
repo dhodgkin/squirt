@@ -16,17 +16,21 @@
 
 function __autoload($class)
 {
-    if (file_exists(BASEPATH.'/core/'.strtolower($class).'.php'))
+    $class = strtolower($class);
+    $core = BASEPATH.'/core/';
+    $libraries = BASEPATH.'/libraries/';
+    $controllers = APPPATH.'/controllers/';
+    if (file_exists($core.$class.'.php'))
     {
-        require_once BASEPATH.'/core/'.strtolower($class).'.php';
+        include $core.$class.'.php';
     }
-    elseif (file_exists(BASEPATH.'/libraries/'.strtolower($class).'.php'))
+    elseif (file_exists($libraries.$class.'.php'))
     {
-        require_once BASEPATH.'/libraries/'.strtolower($class).'.php';
+        include $libraries.$class.'.php';
     }
-    elseif (file_exists(APPPATH.'/controllers/'.strtolower($class).'.php'))
+    elseif (file_exists($controllers.$class.'.php'))
     {
-        require_once APPPATH.'/controllers/'.strtolower($class).'.php';
+        include $controllers.$class.'.php';
     }
     else
     {
