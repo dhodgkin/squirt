@@ -23,7 +23,13 @@ class welcome extends controller
 
     public function index()
     {
-        $this->load->view('welcome');
+        $this->db->select('field')
+        ->from('table')
+        ->join('table_2', 'field2=field1')
+        ->limit(1);
+        $results = $this->db->get();
+   http://i.imgur.com/IyTh8.gif     echo $results->num_rows();
+        // $this->load->view('welcome');
     }
 }
 
