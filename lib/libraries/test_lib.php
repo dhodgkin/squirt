@@ -14,7 +14,6 @@
 
 // ------------------------------------------------------------------------
 
-// does this thing work or not? Testing some more...
 
 class test_lib
 {
