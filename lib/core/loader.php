@@ -41,9 +41,15 @@ class loader
             $this->instance->$library = new $library();
             return $this;
         }
+        elseif (file_exists(BASEPATH.'libraries/'.$library.'.php'))
+        {
+            include BASEPATH.'libraries/'.$library.'.php';
+            $this->instance->$library = new $library();
+            return $this;
+        }
         else
         {
-            show_error('Library doesn\'t exist.');
+            show_error('Library (<strong>'.$library.'</strong>) does not exist.');
         }
     }
 

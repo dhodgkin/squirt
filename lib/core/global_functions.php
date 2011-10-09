@@ -34,7 +34,7 @@ function __autoload($class)
     }
     else
     {
-        die('Class does not exist.');
+        show_error('Class (<strong>'.$class.'</strong>) does not exist.');
     }
 }
 
