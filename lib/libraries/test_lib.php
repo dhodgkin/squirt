@@ -15,7 +15,6 @@
 // ------------------------------------------------------------------------
 
 // does this thing work or not? Testing some more...
-// So one more test...
 
 class test_lib
 {
