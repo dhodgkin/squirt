@@ -24,7 +24,7 @@ class input
         {
             foreach ($_GET as $key => $value)
             {
-                $this->get[$key] = $value;
+                $this->get[$key] = $this->sanitize($value);
             }
             unset($_GET);
         }
@@ -32,7 +32,7 @@ class input
         {
             foreach ($_POST as $key => $value)
             {
-                $this->post[$key] = $value;
+                $this->post[$key] = $this->sanitize($value);
             }
             unset($_POST);
         }
@@ -56,9 +56,19 @@ class input
         return $this->post[$key];
     }
     
-    public function sanitize()
+    public function useragent()
     {
+        return (!isset($_SERVER['HTTP_USER_AGENT'])) ? FALSE : $_SERVER['HTTP_USER_AGENT'];
+    }
     
+    public function is_ajax()
+    {
+        return ($_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest');
+    }
+    
+    private function sanitize($value)
+    {
+        return $value;
     }
 }
 
