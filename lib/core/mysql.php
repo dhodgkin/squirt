@@ -136,6 +136,35 @@ class mysql
         $data = htmlspecialchars($data);
         return mysql_real_escape_string($data);
     }
+    
+    public function select($select)
+    {
+        $this->query = 'SELECT '.$select;
+        return $this;
+    }
+
+    public function from($table)
+    {
+        $this->query = $this->query.' FROM '.$table;
+        return $this;
+    }
+    
+    public function join($table, $on)
+    {
+        $this->query = $this->query.' JOIN '.$table.' ON '.$on;
+        return $this;
+    }
+    
+    public function limit($limit, $offset = 0)
+    {
+        $this->query = $this->query.' LIMIT '.$offset.', '.$limit;
+        return $this;
+    }
+    
+    public function get()
+    {
+        return $this;
+    }
 
     public function close()
     {
