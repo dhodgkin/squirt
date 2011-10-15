@@ -56,9 +56,15 @@ class input
         return $this->post[$key];
     }
     
-    public function useragent()
+    public function user_agent()
     {
         return (!isset($_SERVER['HTTP_USER_AGENT'])) ? FALSE : $_SERVER['HTTP_USER_AGENT'];
+    }
+    
+    public function browser()
+    {
+        $user_agent = $this->user_agent();
+        return get_browser($user_agent, TRUE);
     }
     
     public function is_ajax()

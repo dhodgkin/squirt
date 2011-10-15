@@ -23,7 +23,7 @@ class welcome extends controller
 
     public function index()
     {
-        echo $this->input->useragent();
+        echo '<pre>'.print_r($this->input->browser(), TRUE).'</pre>';
         // $this->load->view('welcome');
     }
 }
