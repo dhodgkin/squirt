@@ -20,6 +20,7 @@ class input
 
     public function __construct()
     {
+        $this->user_agent = new user_agent();
         if (!empty($_GET))
         {
             foreach ($_GET as $key => $value)
@@ -58,13 +59,13 @@ class input
     
     public function user_agent()
     {
-        return (!isset($_SERVER['HTTP_USER_AGENT'])) ? FALSE : $_SERVER['HTTP_USER_AGENT'];
+        return $this->user_agent->show();
     }
     
     public function browser()
     {
-        $user_agent = $this->user_agent();
-        return get_browser($user_agent, TRUE);
+        $user_agent = $this->user_agent->show();
+        return explode(' ', $user_agent);
     }
     
     public function is_ajax()
