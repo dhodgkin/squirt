@@ -18,6 +18,8 @@ define('SQUIRT_VERSION', '1.1.0');
 
 include BASEPATH.'core/global_functions.php';
 
+include BASEPATH.'core/router.php';
+
 include APPPATH.'config/global.php';
 
 include APPPATH.'config/routes.php';
@@ -35,18 +37,9 @@ if (function_exists("set_time_limit") == TRUE AND @ini_get("safe_mode") == 0)
 }
 
 $path = get_path();
-
-foreach ($config['routes'] as $key => $value)
-{
-    if (preg_match('#^'.$key.'$#', implode('/', $path)))
-    {
-        if (strpos($value, '$') !== FALSE AND strpos($key, '(') !== FALSE)
-        {
-            $path = preg_replace('#^'.$key.'$#', $value, implode('/', $path));
-            $path = explode('/', $path);
-        }
-    }
-}
+$router = new router();
+$router->register($config['routes']);
+$path = $router->route($path);
 
 if (!empty($path[1]))
 {
