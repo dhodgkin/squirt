@@ -46,7 +46,7 @@ class router
 		{
 			return $this->routes[$uri];
 		}
-		foreach ($this->routes as $key => $val)
+		foreach ($this->routes as $key => $value)
 		{
 			foreach ($this->shortcuts as $find => $replace)
 			{
@@ -56,14 +56,14 @@ class router
 			{
 				if (strpos($val, '$') !== FALSE && strpos($key, '(') !== FALSE)
 				{
-					$val = preg_replace('#^'.$key.'$#', $val, $uri);
+					$val = preg_replace('#^'.$key.'$#', $value, $uri);
 				}
-				return explode('/', $val);
+				return explode('/', $value);
 			}
 		}
 		return explode('/', $uri);
 	}
 }
 
-/* End of file input.php */
-/* Location: ./lib/core/input.php */
+/* End of file router.php */
+/* Location: ./lib/core/router.php */

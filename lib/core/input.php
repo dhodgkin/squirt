@@ -57,17 +57,6 @@ class input
         return $this->post[$key];
     }
     
-    public function user_agent()
-    {
-        return $this->user_agent->show();
-    }
-    
-    public function browser()
-    {
-        $user_agent = $this->user_agent->show();
-        return explode(' ', $user_agent);
-    }
-    
     public function is_ajax()
     {
         return ($_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest');

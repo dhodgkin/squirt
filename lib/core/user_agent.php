@@ -28,7 +28,10 @@ class user_agent
     
     public function browser()
     {
-    
+        if (strpos($this->user_agent, 'chrome') === TRUE)
+        {
+            return 'Chrome';
+        }
     }
 }
 

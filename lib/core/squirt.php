@@ -22,6 +22,7 @@ class squirt
         $this->input = new input();
         $this->config = new config();
         $this->session = new session();
+        $this->user_agent = new user_agent();
         $this->load = new loader($this);
         include APPPATH.'config/autoload.php';
         foreach ($autoload as $type => $load)
