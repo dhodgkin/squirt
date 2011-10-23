@@ -14,11 +14,10 @@
 
 // ------------------------------------------------------------------------
 
-class controller extends squirt
+class controller
 {
-    public function __construct()
+    public function __construct($instance)
     {
-        parent::__construct();
         $this->db->open();
     }
     

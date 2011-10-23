@@ -59,6 +59,37 @@ class squirt
             }
         }
     }
+    
+    public function start()
+    {
+        $path = get_path();
+        $router = new router();
+        $router->register($this->config->item('routes'));
+        $path = $router->route($path);
+        if (!empty($path[1]))
+        {
+            $controller = $path[1];
+            if (file_exists(APPPATH.'controllers/'.$controller.'.php'))
+            {
+                include APPPATH.'controllers/'.$controller.'.php';
+                $controller = new $controller($this);
+            }
+            else
+            {
+                $controller = new Controller($this);
+            }
+            $method = (empty($path[2]) ? 'index' : $path[2]);
+            $method = (method_exists($controller, $method) ? $method : 'not_found');
+            $path = array_filter($path);
+            call_user_func_array(array($controller, $method), array_slice($path, 2));
+        }
+        else
+        {
+            $controller = $this->config->item('global', 'base_controller');
+            $controller = new $controller();
+            $controller->index();
+        }
+    }
 }
 
 /* End of file squirt.php */

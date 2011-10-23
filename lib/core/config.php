@@ -21,7 +21,14 @@ class config
     public function item($type = NULL, $key = NULL)
     {
         include APPPATH.'config/'.$type.'.php';
-        return $config[$type][$key];
+        if ($key !== NULL)
+        {
+            return $config[$type][$key];
+        }
+        else
+        {
+            return $config[$type];
+        }
     }
 }
 

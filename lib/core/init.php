@@ -22,8 +22,6 @@ include BASEPATH.'core/router.php';
 
 include APPPATH.'config/global.php';
 
-include APPPATH.'config/routes.php';
-
 set_error_handler('squirt_error_handler');
 
 if (!is_php('5.3'))
@@ -36,34 +34,8 @@ if (function_exists("set_time_limit") == TRUE AND @ini_get("safe_mode") == 0)
     @set_time_limit(300);
 }
 
-$path = get_path();
-$router = new router();
-$router->register($config['routes']);
-$path = $router->route($path);
-
-if (!empty($path[1]))
-{
-    $controller = $path[1];
-    if (file_exists(APPPATH.'controllers/'.$controller.'.php'))
-    {
-        include APPPATH.'controllers/'.$controller.'.php';
-        $controller = new $controller();
-    }
-    else
-    {
-        $controller = new Controller();
-    }
-    $method = (empty($path[2]) ? 'index' : $path[2]);
-    $method = (method_exists($controller, $method) ? $method : 'not_found');
-    $path = array_filter($path);
-    call_user_func_array(array($controller, $method), array_slice($path, 2));
-}
-else
-{
-    $controller = $config['global']['base_controller'];
-    $controller = new $controller();
-    $controller->index();
-}
+$squirt = new Squirt();
+$squirt->start();
 
 /* End of file init.php */
 /* Location: ./lib/init.php */
