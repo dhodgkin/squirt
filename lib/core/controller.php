@@ -14,11 +14,12 @@
 
 // ------------------------------------------------------------------------
 
-class controller
+class controller extends squirt
 {
-    public function __construct($instance)
+    public function __construct($instance = NULL)
     {
-        $this->db->open();
+        parent::__construct();
+        //$this->db->open();
     }
     
     public function not_found()
@@ -28,7 +29,7 @@ class controller
     
     public function __deconstruct()
     {
-        $this->db->close();
+        //$this->db->close();
     }
 }
 
