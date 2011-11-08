@@ -28,49 +28,29 @@ class ErrorHandler extends Exception {
   protected $severity;
   
   public function __construct($message, $code, $severity, $filename, $lineno) {
-    $this->message = $message;
-    $this->code = $code;
+    $this->message  = $message;
+    $this->code     = $code;
     $this->severity = $severity;
-    $this->file = $filename;
-    $this->line = $lineno;
+    $this->file     = $filename;
+    $this->line     = $lineno;
   }
   
   public function getSeverity() {
     return $this->severity;
   }
   
-  public function squirt_error_handler($severity, $message, $filepath, $line) {
-    $levels = array(E_ERROR	=> 'Error',
-                    E_WARNING => 'Warning',
-                    E_PARSE	=> 'Parsing Error',
-                    E_NOTICE => 'Notice',
-                    E_CORE_ERROR => 'Core Error',
-                    E_CORE_WARNING => 'Core Warning',
-                    E_COMPILE_ERROR => 'Compile Error',
-                    E_COMPILE_WARNING => 'Compile Warning',
-                    E_USER_ERROR => 'User Error',
-                    E_USER_WARNING => 'User Warning',
-                    E_USER_NOTICE => 'User Notice',
-                    E_STRICT => 'Runtime Notice');
-                      
-    if ($severity == E_STRICT) {
-      return;
-    }
-
-    if (($severity & error_reporting()) == $severity) {
-      $this->show_php_error($levels[$severity], $message, $filepath, $line);
-    }
-  }
-
-  public function show_php_error($severity, $message, $filepath, $line) {
-    echo '<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">';
-    echo '<h4>A PHP Error was encountered</h4>';
-    echo '<p>Severity: '.$severity.'</p>';
-    echo '<p>Message:  '.$message.'</p>';
-    echo '<p>Filename: '.$filepath.'</p>';
-    echo '<p>Line Number: '.$line.'</p>';
-    echo '</div>';
+  public function showException() {
+    return '<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">'
+      .'<h4>A PHP Error was encountered</h4>'
+      .'Severity: '.$this->getSeverity().'<br>'
+      .'Message: '.$this->getMessage().'<br>'
+      .'Filename: '.$this->getFile().'<br>'
+      .'Line Number: '.$this->getLine().'<br>'
+      .'<pre>Stack Trace: <br>'.$this->getTraceAsString().'</pre></div>';
     exit;
   }
 }
-?>
+// END ErrorHandler Class
+
+/* End of file errorhandler.php */
+/* Location: ./lib/core/errorhandler.php */

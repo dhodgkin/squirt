@@ -50,63 +50,6 @@ function is_php($version = '5.0.0')
     return $is_php[$version];
 }
 
-// added 11/7/11 by Damien Hodgkin.
-function squirt_exception_handler($severity, $message, $filename, $lineno) {
-  if ($severity == E_STRICT) {
-    return;
-  }
-  if (($severity & error_reporting()) == $severity) {
-    throw new ErrorHandler($message, 0, $severity, $filename, $lineno);
-  }
-}
-
-  function squirt_error_handler($severity, $message, $filepath, $line) {
-    $levels = array(E_ERROR	=> 'Error',
-                    E_WARNING => 'Warning',
-                    E_PARSE	=> 'Parsing Error',
-                    E_NOTICE => 'Notice',
-                    E_CORE_ERROR => 'Core Error',
-                    E_CORE_WARNING => 'Core Warning',
-                    E_COMPILE_ERROR => 'Compile Error',
-                    E_COMPILE_WARNING => 'Compile Warning',
-                    E_USER_ERROR => 'User Error',
-                    E_USER_WARNING => 'User Warning',
-                    E_USER_NOTICE => 'User Notice',
-                    E_STRICT => 'Runtime Notice');
-                      
-    if ($severity == E_STRICT) {
-      return;
-    }
-    if (($severity & error_reporting()) == $severity) {
-      $this->show_php_error($levels[$severity], $message, $filepath, $line);
-    }
-  }
-
-  function show_php_error($severity, $message, $filepath, $line) {
-#    $severity_class = lcfirst($severity);    
-#    $file = basename($filepath);
-#       
-#    echo '<div class="'.$severity_class.'"><pre><code>';
-#    echo '<strong>'.$severity.'</strong>: '.$message;
-#    echo "<br>    around line #".$line." in ".$file;
-#    echo '</code></pre></div>';
-    echo '<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">';
-    echo '<h4>A PHP Error was encountered</h4>';
-    echo '<p>Severity: '.$severity.'</p>';
-    echo '<p>Message:  '.$message.'</p>';
-    echo '<p>Filename: '.$filepath.'</p>';
-    echo '<p>Line Number: '.$line.'</p>';
-    echo '</div>';
-    exit;
-  }
-
-
-function show_error($message)
-{
-        echo $message.'<br >';
-        exit;
-}
-
 function get_path()
 {
     $uri = $_SERVER['REQUEST_URI'];
@@ -124,6 +67,20 @@ function get_path()
     return $new_path;
 }
 
+function squirt_error_handler($errno, $errstr, $errfile, $errline) {
+  try {
+    if (($errno & error_reporting()) == $errno) {
+      throw new ErrorHandler($errstr, 0, $errno, $errfile, $errline);
+    }  
+  } catch(Exception $e) {
+    echo $e->showException($e);
+  }
+}
 
+function show_error($message)
+{
+    echo $message.'<br >';
+    exit;
+}
 /* End of file global_functions.php */
 /* Location: ./lib/core/global_functions.php */
