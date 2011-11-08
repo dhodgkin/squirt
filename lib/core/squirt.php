@@ -29,37 +29,29 @@ class squirt
         {
             if ($type === 'libraries')
             {
-                foreach ($load as $name)
-                {
-                    if ($name !== '')
-                    {
-                        $this->load->library($name);
-                    }
-                }
+                $this->load_em($load);
             }
             else if ($type === 'models')
             {
-                foreach ($load as $name)
-                {
-                    if ($name !== '')
-                    {
-                        $this->load->model($name);
-                    }
-                }
+                $this->load_em($load);
             }
             else if ($type === 'helpers')
             {
-                foreach ($load as $name)
-                {
-                    if ($name !== '')
-                    {
-                        $this->load->helper($name);
-                    }
-                }
+                $this->load_em($load);
             }
         }
     }
     
+    private function load_em($load) {
+        foreach ($load as $name)
+        {
+            if ($name !== '')
+            {
+                $this->load->helper($name);
+            }
+        }
+    }
+        
     public function start()
     {
         $path = get_path();

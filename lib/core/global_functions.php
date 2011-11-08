@@ -50,43 +50,6 @@ function is_php($version = '5.0.0')
     return $is_php[$version];
 }
 
-function squirt_error_handler($severity, $message, $filepath, $line)
-{
-    $levels = array(E_ERROR	=> 'Error',
-                    E_WARNING => 'Warning',
-                    E_PARSE	=> 'Parsing Error',
-                    E_NOTICE => 'Notice',
-                    E_CORE_ERROR => 'Core Error',
-                    E_CORE_WARNING => 'Core Warning',
-                    E_COMPILE_ERROR => 'Compile Error',
-                    E_COMPILE_WARNING => 'Compile Warning',
-                    E_USER_ERROR => 'User Error',
-                    E_USER_WARNING => 'User Warning',
-                    E_USER_NOTICE => 'User Notice',
-                    E_STRICT => 'Runtime Notice');
-    if ($severity == E_STRICT)
-    {
-        return;
-    }
-
-    if (($severity & error_reporting()) == $severity)
-    {
-        show_php_error($levels[$severity], $message, $filepath, $line);
-    }
-}
-
-function show_php_error($severity, $message, $filepath, $line)
-{
-        echo $severity.' on line #'.$line.' -> '.$message.'<br >';
-        exit;
-}
-
-function show_error($message)
-{
-        echo $message.'<br >';
-        exit;
-}
-
 function get_path()
 {
     $uri = $_SERVER['REQUEST_URI'];
@@ -104,6 +67,20 @@ function get_path()
     return $new_path;
 }
 
+function squirt_error_handler($errno, $errstr, $errfile, $errline) {
+  try {
+    if (($errno & error_reporting()) == $errno) {
+      throw new ErrorHandler($errstr, 0, $errno, $errfile, $errline);
+    }  
+  } catch(Exception $e) {
+    echo $e->showException($e);
+  }
+}
 
+function show_error($message)
+{
+    echo $message.'<br >';
+    exit;
+}
 /* End of file global_functions.php */
 /* Location: ./lib/core/global_functions.php */
