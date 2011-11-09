@@ -14,21 +14,11 @@
 
 // ------------------------------------------------------------------------
 
-class welcome extends controller
-{
-    public function __construct()
-    {
-        parent::__construct();
-    }
+$config['sqlite'] = array(
+    'use' => FALSE,
+    'path' => APPPATH.'/db',
+    'database' => 'database.sqlite'
+);
 
-    public function index()
-    {
-        // echo $this->user_agent->browser();
-        // $this->load->view('welcome');
-        $this->load->database('sqlite');
-        echo $this->sqlite->test();
-    }
-}
-
-/* End of file welcome.php */
-/* Location: ./app/controllers/welcome.php */
+/* End of file sqlite.php */
+/* Location: ./app/config/sqlite.php */
