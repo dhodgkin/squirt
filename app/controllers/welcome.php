@@ -24,7 +24,9 @@ class welcome extends controller
     public function index()
     {
         // echo $this->user_agent->browser();
-        $this->load->view('welcome');
+        // $this->load->view('welcome');
+        $this->load->database('mongodb');
+        echo $this->mongodb->test();
     }
 }
 
