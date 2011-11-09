@@ -21,7 +21,6 @@ class session
     {
         include APPPATH.'config/session.php';
         $this->config = $config['session'];
-        session_start();
     }
     
     public function set($key, $value)
