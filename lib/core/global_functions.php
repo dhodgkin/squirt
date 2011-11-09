@@ -67,14 +67,18 @@ function get_path()
     return $new_path;
 }
 
-function squirt_error_handler($errno, $errstr, $errfile, $errline) {
-  try {
-    if (($errno & error_reporting()) == $errno) {
-      throw new ErrorHandler($errstr, 0, $errno, $errfile, $errline);
-    }  
-  } catch(Exception $e) {
-    echo $e->showException($e);
-  }
+function squirt_error_handler($errno, $errstr, $errfile, $errline)
+{
+    try {
+        if (($errno & error_reporting()) == $errno)
+        {
+            throw new error_handler($errstr, 0, $errno, $errfile, $errline);
+        }  
+    }
+    catch(Exception $e)
+    {
+        echo $e->showException($e);
+    }
 }
 
 function show_error($message)
@@ -82,5 +86,6 @@ function show_error($message)
     echo $message.'<br >';
     exit;
 }
+
 /* End of file global_functions.php */
 /* Location: ./lib/core/global_functions.php */

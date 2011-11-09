@@ -29,20 +29,39 @@ class squirt
         {
             if ($type === 'libraries')
             {
-                $this->load_em($load);
+                foreach ($load as $name)
+                {
+                    if ($name !== '')
+                    {
+                        $this->load->library($name);
+                    }
+                }
             }
             else if ($type === 'models')
             {
-                $this->load_em($load);
+                foreach ($load as $name)
+                {
+                    if ($name !== '')
+                    {
+                        $this->load->model($name);
+                    }
+                }
             }
             else if ($type === 'helpers')
             {
-                $this->load_em($load);
+                foreach ($load as $name)
+                {
+                    if ($name !== '')
+                    {
+                        $this->load->helper($name);
+                    }
+                }
             }
         }
     }
     
-    private function load_em($load) {
+    private function load_em($load)
+    {
         foreach ($load as $name)
         {
             if ($name !== '')
