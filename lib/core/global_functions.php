@@ -81,11 +81,5 @@ function squirt_error_handler($errno, $errstr, $errfile, $errline)
     }
 }
 
-function show_error($message)
-{
-    echo $message.'<br >';
-    exit;
-}
-
 /* End of file global_functions.php */
 /* Location: ./lib/core/global_functions.php */

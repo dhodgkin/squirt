@@ -32,7 +32,7 @@ if (function_exists("set_time_limit") == TRUE AND @ini_get("safe_mode") == 0)
 }
 
 $squirt = new Squirt();
-$squirt->start();
+$squirt->init();
 
 /* End of file init.php */
 /* Location: ./lib/init.php */

@@ -18,7 +18,6 @@ class squirt
 {
     public function __construct()
     {
-        $this->db = new mysql();
         $this->input = new input();
         $this->config = new config();
         $this->session = new session();
@@ -59,19 +58,8 @@ class squirt
             }
         }
     }
-    
-    private function load_em($load)
-    {
-        foreach ($load as $name)
-        {
-            if ($name !== '')
-            {
-                $this->load->helper($name);
-            }
-        }
-    }
         
-    public function start()
+    public function init()
     {
         $path = get_path();
         $router = new router();

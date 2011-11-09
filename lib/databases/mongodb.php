@@ -14,13 +14,22 @@
 
 // ------------------------------------------------------------------------
 
-$autoload['database'] = array('mysql');
+class mongodb
+{
 
-$autoload['libraries'] = array();
+    public $connection;
 
-$autoload['helpers'] = array();
+    public function __construct()
+    {
+        // include APPPATH.'config/mongodb.php';
+        // $this->config = $config['mysql'];
+    }
+    
+    public function test()
+    {
+        return 'MongoDB loaded.';
+    }
+}
 
-$autoload['models'] = array();
-
-/* End of file autoload.php */
-/* Location: ./app/config/autoload.php */
+/* End of file mongodb.php */
+/* Location: ./lib/databases/mongodb.php */

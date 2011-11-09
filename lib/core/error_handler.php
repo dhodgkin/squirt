@@ -46,16 +46,15 @@ class error_handler extends exception
      
     public function showException()
     {
-        return '<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">'
-        .'<img src="">'
+        $exception = '<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">'
         .'<h4>A PHP Error was encountered</h4>'
-        .'Severity: '.$this->getSeverity().'<br>'
-        .'Exception Code: '.$this->getCode().'<br>'
-        .'Message: '.$this->getMessage().'<br>'
-        .'Filename: '.$this->getFile().'<br>'
-        .'Line Number: '.$this->getLine().'<br>'
-        .'Stack Trace: <br><pre><code>'.$this->getTraceAsString().'</code></pre></div>';
-        exit;
+        .'<strong>Severity:</strong> '.$this->getSeverity().'<br>'
+        .'<strong>Exception Code:</strong> '.$this->getCode().'<br>'
+        .'<strong>Message:</strong> '.$this->getMessage().'<br>'
+        .'<strong>Filename:</strong> '.$this->getFile().'<br>'
+        .'<strong>Line Number:</strong> '.$this->getLine().'<br>'
+        .'<strong>Stack Trace:</strong> <br><pre><code>'.$this->getTraceAsString().'</code></pre></div>';
+        return $exception; exit;
     }
 
     public function getSeverity()

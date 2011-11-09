@@ -49,7 +49,7 @@ class loader
         }
         else
         {
-            show_error('Library (<strong>'.$library.'</strong>) does not exist.');
+            echo 'Error loading library.';
         }
     }
 
@@ -59,10 +59,11 @@ class loader
         {
             include APPPATH.'models/'.$model.'.php';
             $this->instance->$model = new $model();
+            return $this;
         }
         else
         {
-            show_error('Model doesn\'t exist.');
+            echo 'Error loading model.';
         }
     }
     
@@ -74,7 +75,21 @@ class loader
         }
         else
         {
-            show_error('helper doesn\'t exist.');
+            echo 'Error loading helper.';
+        }
+    }
+    
+    public function database($database)
+    {
+        if (file_exists(BASEPATH.'databases/'.$database.'.php'))
+        {
+            include BASEPATH.'databases/'.$database.'.php';
+            $this->instance->$database = new $database();
+            return $this;
+        }
+        else
+        {
+            echo 'Error loading database.';
         }
     }
 }
