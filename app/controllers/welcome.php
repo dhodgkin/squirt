@@ -25,8 +25,15 @@ class welcome extends controller
     {
         // echo $this->user_agent->browser();
         // $this->load->view('welcome');
-        $this->load->database('sqlite');
-        echo $this->sqlite->test();
+        if($this->load->database('sqlite'))
+        {
+            echo $this->sqlite->test();
+            echo $this->sqlite->version();
+        } 
+        else
+        {
+            echo "Broke.";
+        }
     }
 }
 

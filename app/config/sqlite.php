@@ -15,8 +15,8 @@
 // ------------------------------------------------------------------------
 
 $config['sqlite'] = array(
-    'use' => FALSE,
-    'path' => APPPATH.'/db',
+    'use' => TRUE,
+    'path' => APPPATH.'db',
     'database' => 'database.sqlite'
 );
 

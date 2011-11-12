@@ -17,7 +17,8 @@
 class sqlite extends SQLite3
 {
     protected $connection;
-
+    protected $db;
+    
     public function __construct()
     {
         include APPPATH.'config/sqlite.php';
@@ -26,31 +27,42 @@ class sqlite extends SQLite3
     
     public function open()
     {
-        $db = $this->config['path'] ."/". $this->config['database'];
-        
-        //if(!$this->connection = new SQLite3($db)) 
-        if(!$this->db_exists($db))
+        if($this->config['use'] === TRUE)
         {
-            die("Cannot find " . $this->config['database']);
+            $this->db = $this->config['path'] ."/". $this->config['database'];
+            
+            //if(!$this->connection = new SQLite3($db)) 
+            if($this->db_exists($this->db) == $this->db)
+            {
+                echo "Creating " . $this->config['database'] . " at " . $this->db;
+                
+                if($this->connection = new SQLite3($this->db))
+                {
+                    echo "Created " . $this->config['database'];
+                    return $this->connection;
+                }
+                else
+                {
+                    echo "Unable to create " . $this->config['database'];
+                }
+                
+            }
+            else
+            {
+                echo "No such path."
+            }
         }
-        else
-        {
-            $this->connection = new SQLite3($db);
-            return $this->connection;
-        }
-        
+    }
+    
+    public static function version()
+    {
+        $ver = SQLite3::version();
+        return "<p>SQLite version ".$ver['versionString']."</p>";
     }
     
     public function db_exists($db) 
     {
-        if(isset($db)) 
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        return $db;
     }
     
     public function test()
@@ -63,7 +75,7 @@ class sqlite extends SQLite3
         } 
         else 
         {
-            echo "Can't find " . $this->config['database'];
+            echo "Can't find " . $this->config['database'] . " at " . $this->db;
         }
         
         return;
