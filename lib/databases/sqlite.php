@@ -14,27 +14,42 @@
 
 // ------------------------------------------------------------------------
 
-class sqlite
+class sqlite extends SQLite3
 {
-
-    public $connection;
+    protected $connection;
 
     public function __construct()
     {
-         include APPPATH.'config/sqlite.php';
-         $this->config = $config['sqlite'];
+        include APPPATH.'config/sqlite.php';
+        $this->config = $config['sqlite'];
     }
     
     public function open()
     {
         $db = $this->config['path'] ."/". $this->config['database'];
         
-        if(!$this->connection = new SQLite3($db)) {
-            die("Cannot find" . $this->config['database']);
+        //if(!$this->connection = new SQLite3($db)) 
+        if(!$this->db_exists($db))
+        {
+            die("Cannot find " . $this->config['database']);
         }
         else
         {
-            return $db;
+            $this->connection = new SQLite3($db);
+            return $this->connection;
+        }
+        
+    }
+    
+    public function db_exists($db) 
+    {
+        if(isset($db)) 
+        {
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
     
@@ -42,9 +57,9 @@ class sqlite
     {
         echo "<h4>Loading: " . $this->config['database'] . "</h4><br>";
         
-        if ($this->connection) 
+        if ($this->open()) 
         {
-            echo $this->open() . " loaded.";
+            echo "Opened " . $this->config['database'];
         } 
         else 
         {
