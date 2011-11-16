@@ -25,8 +25,8 @@ class welcome extends controller
     {
         // echo $this->user_agent->browser();
         // $this->load->view('welcome');
-        $this->load->database('mongodb');
-        echo $this->mongodb->test();
+        $this->load->database('mongodb', TRUE);
+        echo $this->db->test();
     }
 }
 
