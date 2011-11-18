@@ -19,7 +19,7 @@ include BASEPATH.'core/global_functions.php';
 include BASEPATH.'core/router.php';
 include APPPATH.'config/global.php';
 
-set_error_handler('squirt_error_handler');
+set_error_handler('exception_error');
 
 if (!is_php('5.3'))
 {

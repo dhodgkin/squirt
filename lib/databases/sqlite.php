@@ -16,7 +16,6 @@
 
 class sqlite extends SQLite3
 {
-    protected $connection;
     protected $db;
     
     public function __construct()
@@ -29,27 +28,33 @@ class sqlite extends SQLite3
     {
         if($this->config['use'] === TRUE)
         {
-            $this->db = $this->config['path'] ."/". $this->config['database'];
-            
-            //if(!$this->connection = new SQLite3($db)) 
-            if($this->db_exists($this->db) == $this->db)
-            {
-                echo "Creating " . $this->config['database'] . " at " . $this->db;
+            $db = $this->config['path'] . $this->config['database'];
                 
-                if($this->connection = new SQLite3($this->db))
-                {
-                    echo "Created " . $this->config['database'];
-                    return $this->connection;
-                }
-                else
-                {
-                    echo "Unable to create " . $this->config['database'];
-                }
-                
-            }
-            else
+            if(!isset($this->connection))
             {
-                echo "No such path."
+                echo "Trying...";
+                // let's 'try' to create the db and 'catch' any exceptions
+                try
+                {
+                    echo "anh...";
+                    echo "<br>db: ".$db;
+
+                    if($conn = new SQLite3($db, SQLITE3_OPEN_CREATE))
+                    {
+                        echo "<br>Test: Conn.";
+                        print_r($conn);
+                    }
+                    else
+                    {
+                        echo "<br>Grr...";
+                        throw new exception_handler('FUCK!');
+                        print_r($conn);
+                    }
+                }
+                catch (exception_handler $e)
+                {
+                    echo $e->__toString();
+                }
             }
         }
     }
@@ -71,11 +76,11 @@ class sqlite extends SQLite3
         
         if ($this->open()) 
         {
-            echo "Opened " . $this->config['database'];
+            echo "<br>Opened " . $this->config['database'];
         } 
         else 
         {
-            echo "Can't find " . $this->config['database'] . " at " . $this->db;
+            echo "<br>Can't find " . $this->config['database'] . " at " . $this->db;
         }
         
         return;

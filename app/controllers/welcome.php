@@ -23,16 +23,20 @@ class welcome extends controller
 
     public function index()
     {
-        // echo $this->user_agent->browser();
+        echo $this->user_agent->browser();
         // $this->load->view('welcome');
-        if($this->load->database('sqlite'))
+
+        try
         {
-            echo $this->sqlite->test();
-            echo $this->sqlite->version();
-        } 
-        else
+            if($this->load->database('sqlite'))
+            {
+                echo $this->sqlite->test();
+                echo $this->sqlite->version();
+            } 
+        }
+        catch(error_handler $e)
         {
-            echo "Broke.";
+            $e->__toString();
         }
     }
 }

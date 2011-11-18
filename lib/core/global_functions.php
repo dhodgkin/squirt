@@ -67,17 +67,17 @@ function get_path()
     return $new_path;
 }
 
-function squirt_error_handler($errno, $errstr, $errfile, $errline)
+function exception_error($exception, $severity, $message, $filename, $lineno)
 {
     try {
-        if (($errno & error_reporting()) == $errno)
+        if (($severity & error_reporting()) == $severity)
         {
-            throw new error_handler($errstr, 0, $errno, $errfile, $errline);
+            throw new error_handler($message, 0, $severity, $filename, $lineno);
         }  
     }
-    catch(Exception $e)
+    catch(error_handler $e)
     {
-        echo $e->showException($e);
+        echo $e->__toString();
     }
 }
 
