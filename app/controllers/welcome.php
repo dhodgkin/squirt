@@ -30,8 +30,8 @@ class welcome extends controller
         {
             if($this->load->database('sqlite'))
             {
-                echo $this->sqlite->test();
-                echo $this->sqlite->version();
+                echo $this->db->test();
+                echo $this->db->version();
             } 
         }
         catch(error_handler $e)
