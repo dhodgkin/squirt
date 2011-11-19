@@ -79,12 +79,13 @@ class loader
         }
     }
     
-    public function database($database)
+    public function database($database, $assign_to_db = FALSE)
     {
         if (file_exists(BASEPATH.'databases/'.$database.'.php'))
         {
             include BASEPATH.'databases/'.$database.'.php';
-            $this->instance->$database = new $database();
+            $assign = $assign_to_db === TRUE ? 'db' : $database;
+            $this->instance->$assign = new $database();
             return $this;
         }
         else
