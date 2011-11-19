@@ -81,5 +81,29 @@ function exception_error($exception, $severity, $message, $filename, $lineno)
     }
 }
 
+/**
+ * Recursively count array elements multiple dimension deep.
+ */
+function rcount ($array) 
+{ 
+    $count = 0; 
+    if (is_array($array)) 
+    { 
+        foreach($array as $id=>$sub) 
+        { 
+            if (!is_array($sub)) 
+            { 
+                $count++; 
+            } 
+            else 
+            { 
+                $count = ($count + rcount($sub)); 
+            } 
+        } 
+        return $count; 
+    } 
+    return FALSE; 
+}
+
 /* End of file global_functions.php */
 /* Location: ./lib/core/global_functions.php */
