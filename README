@@ -11,6 +11,7 @@ Prone Media (http://www.pronemedia.com)
 TODO:
 =====
 - Complete MySQL class.
+- Complete SQLite3 class.
 - Complete Session class.
 - Write cache class.
 - Finish error handling functions.
